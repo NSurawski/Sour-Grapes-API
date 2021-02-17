@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for wine
-const Wine = require('../models/wines')
+const Wine = require('../models/wine')
 
 // require errors and handle 404
 const customErrors = require('../../lib/custom_errors')
@@ -21,15 +21,14 @@ const router = express.Router()
 // GET /wines
 router.get('/wines', requireToken, (req, res, next) => {
   Wine.find()
-    .then(wines => {
-      return wines.map(wine => wines.toObject())
+    .then(wines => wines.map(wine => wine.toObject()))
     .then(wines => res.status(200).json({ wines: wines }))
     .catch(next)
 })
 
 // SHOW
 // GET /wines/5a7db6c74d55bc51bdf39793
-  // req.params.id will be set based on the `:id` in the route
+// req.params.id will be set based on the `:id` in the route
 router.get('/wines/:id', requireToken, (req, res, next) => {
   Wine.findById(req.params.id)
     .then(handle404)
