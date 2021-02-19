@@ -38,9 +38,10 @@ router.get('/wines/:id', requireToken, (req, res, next) => {
 
 // INDEX user wines
 // GET /wines/user
-router.get('/wines/user', requireToken, (req, res, next) => {
+router.get('/mywines', requireToken, (req, res, next) => {
+  console.log('user is ', req.user)
   Wine.find({ owner: req.user._id })
-    // .populate('owner', '_id email')
+    .populate('owner', '_id email')
     .then(wines => wines.map(wine => wine.toObject()))
     .then(wines => {
       res.status(200).json({ wines: wines })
