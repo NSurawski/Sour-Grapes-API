@@ -10,11 +10,11 @@ curl "${API}${URL_PATH}" \
   --header "Authorization: Bearer ${TOKEN}" \
   --data '{
     "wine": {
+      "producer": "'"${PRODUCER}"'",
       "type": "'"${TYPE}"'",
       "grape": "'"${GRAPE}"'",
       "region": "'"${REGION}"'",
-      "review": "'"${REVIEW}"'",
-      "notes": "'"${NOTES}"'"
+      "review": "'"${REVIEW}"'"
     }
   }'
 

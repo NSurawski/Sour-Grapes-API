@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 // replace with wine model
 const wineSchema = new mongoose.Schema({
+  producer: {
+    type: String,
+    required: true
+  },
   type: {
     type: String,
     required: true
@@ -17,10 +21,6 @@ const wineSchema = new mongoose.Schema({
   review: {
     type: String,
     required: true
-  },
-  notes: {
-    type: String,
-    required: false
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
